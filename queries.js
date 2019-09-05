@@ -16,8 +16,30 @@ const getDepartements = (request, response) => {
   })
 }
 
+const getDepartementByName = (request, response) => {
+  const name = request.params.name
+
+  pool.query('SELECT * FROM departement WHERE name = $1', [name], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 const getPersonnel = (request, response) => {
   pool.query('SELECT * FROM personnel', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const getPersonByName = (request, response) => {
+  const name = request.params.name
+
+  pool.query('SELECT * FROM personnel WHERE name = $1', [name], (error, results) => {
     if (error) {
       throw error
     }
@@ -50,6 +72,8 @@ const createPerson = (request, response) => {
 module.exports = {
 getDepartements,
 getPersonnel,
+getPersonByName,
+getDepartementByName,
 createPerson,
 createDepartement,
 }

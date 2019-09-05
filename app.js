@@ -16,8 +16,10 @@ app.get('/', (request, response) => {
 })
 
 app.get('/departements', db.getDepartements)
+app.get('/departements/:name', db.getDepartementByName)
 app.post('/departements', db.createDepartement)
 app.get('/personnel', db.getPersonnel)
+app.get('/personnel/:name', db.getPersonByName)
 app.post('/personnel', db.createPerson)
 
 app.listen(port, () => {
