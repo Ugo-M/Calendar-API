@@ -7,7 +7,7 @@ const pool = new Pool({
   port: 5432,
 })
 
-const getUsers = (request, response) => {
+const getDepartements = (request, response) => {
   pool.query('SELECT * FROM departement', (error, results) => {
     if (error) {
       throw error
@@ -16,6 +16,40 @@ const getUsers = (request, response) => {
   })
 }
 
+const getPersonnel = (request, response) => {
+  pool.query('SELECT * FROM personnel', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const createDepartement = (request, response) => {
+  const { name} = request.body
+
+  pool.query('INSERT INTO departement (name) VALUES ($1)', [name], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(201).send(`Departement added with ID: ${result.insertId}`)
+  })
+}
+
+const createPerson = (request, response) => {
+  const { name, firstname, birthdate, departement } = request.body
+
+  pool.query('INSERT INTO personnel (name, firstname, birthdate, departement) VALUES ($1, $2, $3, $4)', [name, firstname, birthdate, departement], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(201).send(`Personne added with ID: ${result.insertId}`)
+  })
+}
+
 module.exports = {
-getUsers,
+getDepartements,
+getPersonnel,
+createPerson,
+createDepartement,
 }

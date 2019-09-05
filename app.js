@@ -15,8 +15,18 @@ app.get('/', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' })
 })
 
-app.get('/users', db.getUsers)
+app.get('/departements', db.getDepartements)
+app.post('/departements', db.createDepartement)
+app.get('/personnel', db.getPersonnel)
+app.post('/personnel', db.createPerson)
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
+
+
+// requetes curl :
+
+//curl --data "name=doe&firstname=john&birthdate=2000-01-01&departement=Informatique" http://localhost:3000/personnel/1
+
+//curl --data "name=test" http://localhost:3000/departements/1
