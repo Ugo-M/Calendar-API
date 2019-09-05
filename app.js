@@ -27,6 +27,6 @@ app.listen(port, () => {
 
 // requetes curl :
 
-//curl --data "name=doe&firstname=john&birthdate=2000-01-01&departement=Informatique" http://localhost:3000/personnel/1
+//curl --data "name=doe&firstname=john&birthdate=2000-01-01&departement=Informatique" http://localhost:3000/personnel/
 
-//curl --data "name=test" http://localhost:3000/departements/1
+//curl --data "name=test" http://localhost:3000/departements/

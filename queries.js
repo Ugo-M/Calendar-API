@@ -32,7 +32,7 @@ const createDepartement = (request, response) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`Departement added with ID: ${result.insertId}`)
+    response.status(201).send(`Departement added with name: ${name}`)
   })
 }
 
@@ -43,7 +43,7 @@ const createPerson = (request, response) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`Personne added with ID: ${result.insertId}`)
+    response.status(201).send(`Personne added with name: ${name}`)
   })
 }
 
