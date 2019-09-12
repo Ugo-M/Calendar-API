@@ -4,6 +4,7 @@
 ```
 cd projetJS
 npm install
+sudo npm install -g nodemon
 ```
 
 ##Lancement:
