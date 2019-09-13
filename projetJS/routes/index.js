@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+
 const departmentController = require('../controllers').department;
 const personController = require('../controllers').person;
 
@@ -7,6 +8,7 @@ const personController = require('../controllers').person;
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+
 router.get('/api/department', departmentController.list);
 router.get('/api/department/:id', departmentController.getById);
 router.post('/api/department', departmentController.add);
