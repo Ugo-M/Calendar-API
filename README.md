@@ -1,6 +1,6 @@
 # M5301
 
-##Installation
+## Installation
 
 ```
 cd projetJS
@@ -8,7 +8,7 @@ npm install
 sudo npm install -g nodemon
 ```
 
-##Lancement:
+## Lancement:
 
 `nodemon`
 
