@@ -41,6 +41,9 @@ module.exports = {
         return Event
             .create({
                 event_name: req.body.event_name,
+                event_beginning: req.body.event_beginning,
+                event_end: req.body.event_end,
+                event_type: req.body.event_type,
             })
             .then((event) => res.status(201).send(event))
             .catch((error) => res.status(400).send(error));
