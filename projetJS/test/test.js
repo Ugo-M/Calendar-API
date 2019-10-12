@@ -1,7 +1,7 @@
 const supertest = require("supertest");
 const should = require("should");
-
-let server = supertest.agent("http://localhost:3000");
+const app = require('../app');
+let server = supertest.agent(app);
 
 describe("API test",function(){
     it("should return home page",function(done){
