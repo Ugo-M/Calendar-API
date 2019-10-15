@@ -5,7 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     calendar_name: DataTypes.STRING
   }, {});
   Calendar.associate = function(models) {
-    Calendar.belongsTo(models.User);
+    Calendar.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      as: 'user'
+    });
     Calendar.belongsToMany(models.Event, {
       through: 'CalendarEvent',
       as: 'events',

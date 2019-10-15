@@ -1,6 +1,7 @@
 const express = require('express');
-var router = express.Router();
-
+const router = express.Router();
+const verifySignUp = require('./verifySignUp');
+const authJwt = require('./verifyJwtToken');
 const userController = require('../controllers').user;
 const calendarController = require('../controllers').calendar;
 const eventController = require('../controllers').event;
@@ -11,24 +12,26 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/api/user', userController.list);
-router.get('/api/user/:id', userController.getById);
-router.post('/api/user', userController.add);
-router.put('/api/user/:id', userController.update);
-router.delete('/api/user/:id', userController.delete);
-router.post('/api/user', userController.addWithCalendars);
+router.post('/api/auth/signup', [verifySignUp.checkDuplicateUserName], userController.signup);
+router.post('/api/auth/login', userController.login);
 
-router.get('/api/calendar', calendarController.list);
-router.get('/api/calendar/:id', calendarController.getById);
-router.post('/api/calendar', calendarController.add);
-router.put('/api/calendar/:id', calendarController.update);
-router.delete('/api/calendar/:id', calendarController.delete);
-router.post('/api/calendar/add_event', calendarController.addEvent);
+router.get('/api/user', [authJwt.verifyToken], userController.list);
+router.get('/api/user/:id', [authJwt.verifyToken], userController.getById);
+router.put('/api/user/:id', [authJwt.verifyToken], userController.update);
+router.delete('/api/user/:id', [authJwt.verifyToken], userController.delete);
+router.post('/api/user', [authJwt.verifyToken], userController.addWithCalendars);
 
-router.get('/api/event', eventController.list);
-router.get('/api/event/:id', eventController.getById);
-router.post('/api/event', eventController.add);
-router.put('/api/event/:id', eventController.update);
-router.delete('/api/event/:id', eventController.delete);
+router.get('/api/calendar', [authJwt.verifyToken], calendarController.list);
+router.get('/api/calendar/:id', [authJwt.verifyToken], calendarController.getById);
+router.post('/api/calendar', [authJwt.verifyToken], calendarController.add);
+router.put('/api/calendar/:id', [authJwt.verifyToken], calendarController.update);
+router.delete('/api/calendar/:id', [authJwt.verifyToken], calendarController.delete);
+router.post('/api/calendar/add_event', [authJwt.verifyToken], calendarController.addEvent);
+
+router.get('/api/event', [authJwt.verifyToken], eventController.list);
+router.get('/api/event/:id', [authJwt.verifyToken], eventController.getById);
+router.post('/api/event', [authJwt.verifyToken], eventController.add);
+router.put('/api/event/:id', [authJwt.verifyToken], eventController.update);
+router.delete('/api/event/:id', [authJwt.verifyToken], eventController.delete);
 
 module.exports = router;
