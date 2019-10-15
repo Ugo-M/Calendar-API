@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Ugo-M/M5301.svg?branch=master)](https://travis-ci.org/Ugo-M/M5301)
 
-## Installation
+## Install
 
 ```
 cd projetJS
@@ -10,24 +10,21 @@ npm install
 sudo npm install -g nodemon
 ```
 
-## Lancement:
-
-`nodemon`
-
-### requêtes curl pour l'insertion:
-
+## Launch:
 ```
-curl -i -X POST -H "Content-Type: application/json" -d '{ "department_name":"Info" }' localhost:3000/api/department
-
-curl -i -X POST -H "Content-Type: application/json" -d '{ "department_id":"1","person_name":"Mekki","person_firstname":"Ugo" }' localhost:3000/api/person
+nodemon
 ```
 
-### get:
+### Example of a curl request to sign up:
 
-*http://localhost:3000/api/person*
+```
+curl -i -X POST -H "Content-Type: application/json" -d '{ "username":"example","password":"pass" }' localhost:3000/api/auth/signup
 
-*http://localhost:3000/api/department*
+```
 
-
+### Example of an authenticated (JWT) get request with curl :
+```
+curl -X GET http://localhost:3000/api/user/ -H 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9.46h6B23lSofOtpf28wEKPI3DXLyzC__bCxMfbkT-5l0'
+```
 
 
