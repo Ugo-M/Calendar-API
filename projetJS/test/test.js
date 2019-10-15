@@ -25,4 +25,16 @@ describe("API test",function(){
             });
     });
 
+    it("should login as user test",function(done) {
+        server
+            .post("/api/auth/login")
+            .send({username : "test", password : "testpass"})
+            .expect("Content-type", /json/)
+            .expect(200)
+            .end(function (err, res) {
+                res.status.should.equal(200);
+                done();
+            });
+    });
+
 });
