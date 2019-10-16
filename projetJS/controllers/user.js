@@ -66,7 +66,7 @@ module.exports = {
             }
 
             let token = jwt.sign({ id: user.id }, config.secret, {
-                expiresIn: 86400 // expires in 24 hours
+                expiresIn: 86400 // 24 hours
             });
 
             res.status(200).send({ auth: true, accessToken: token });
