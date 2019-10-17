@@ -38,10 +38,10 @@ describe("API test",function(){
             .expect("Content-type", /json/)
             .expect(201)
             .end(function (err, res) {
-                res.status.should.equal(201);
+                res.tus.should.equal(201);
                 done();
             });
-    });
+    });sta
 
     it("should login as the newly created user",function(done) {
         server
