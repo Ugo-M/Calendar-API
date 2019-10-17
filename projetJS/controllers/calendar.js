@@ -54,36 +54,6 @@ module.exports = {
             .catch((error) => res.status(400).send(error));
     },
 
-    addEvent(req, res) {
-        return Calendar
-            .findByPk(req.body.calendar_id, {
-                include: [{
-                    model: User,
-                    as: 'user'
-                },{
-                    model: Event,
-                    as: 'events'
-                }],
-            })
-            .then((calendar) => {
-                if (!calendar) {
-                    return res.status(404).send({
-                        message: 'Calendar Not Found',
-                    });
-                }
-                Event.findByPk(req.body.event_id).then((event) => {
-                    if (!event) {
-                        return res.status(404).send({
-                            message: 'Event Not Found',
-                        });
-                    }
-                    calendar.addEvent(event);
-                    return res.status(200).send(calendar);
-                })
-            })
-            .catch((error) => res.status(400).send(error));
-    },
-
     update(req, res) {
         return Calendar
             .findByPk(req.params.id, {
