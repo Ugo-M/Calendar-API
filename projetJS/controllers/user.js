@@ -63,6 +63,25 @@ module.exports = {
             .catch((error) => res.status(400).send(error));
     },
 
+    getId(req, res) {
+        return User
+            .findOne({
+                where:{
+                    username: req.body.username,
+                },
+                attributes:[id],
+            })
+            .then((user) => {
+                if (!user) {
+                    return res.status(404).send({
+                        message: 'User Not Found',
+                    });
+                }
+                return res.status(200).send(user);
+            })
+            .catch((error) => res.status(400).send(error));
+    },
+
     signup(req, res) {
         return User
             .create({
@@ -111,7 +130,7 @@ module.exports = {
                     as: 'calendars'
                 }]
             })
-            .then((classroom) => res.status(201).send(classroom))
+            .then((user) => res.status(201).send(user))
             .catch((error) => res.status(400).send(error));
     },
 

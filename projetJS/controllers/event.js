@@ -40,6 +40,7 @@ module.exports = {
     add(req, res) {
         return Event
             .create({
+                calendar_id: req.body.calendar_id,
                 event_name: req.body.event_name,
                 event_beginning: req.body.event_beginning,
                 event_end: req.body.event_end,
@@ -65,7 +66,7 @@ module.exports = {
                 }
                 return event
                     .update({
-                        event_name: req.body.event_name || classroom.event_name,
+                        event_name: req.body.event_name || event.event_name,
                     })
                     .then(() => res.status(200).send(event))
                     .catch((error) => res.status(400).send(error));

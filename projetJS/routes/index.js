@@ -18,6 +18,7 @@ router.post('/api/auth/login', userController.login);
 router.get('/api/user', [authJwt.verifyToken], userController.list);
 router.get('/api/user/id/:id', [authJwt.verifyToken], userController.getById);
 router.get('/api/user/name/', [authJwt.verifyToken],userController.getByName);
+router.get('/api/user/id/', [authJwt.verifyToken],userController.getId);
 router.put('/api/user/:id', [authJwt.verifyToken], userController.update);
 router.delete('/api/user', [authJwt.verifyToken], userController.delete);
 router.post('/api/user', [authJwt.verifyToken], userController.addWithCalendars);
@@ -27,7 +28,6 @@ router.get('/api/calendar/:id', [authJwt.verifyToken], calendarController.getByI
 router.post('/api/calendar', [authJwt.verifyToken], calendarController.add);
 router.put('/api/calendar/:id', [authJwt.verifyToken], calendarController.update);
 router.delete('/api/calendar/:id', [authJwt.verifyToken], calendarController.delete);
-router.post('/api/calendar/add_event', [authJwt.verifyToken], calendarController.addEvent);
 
 router.get('/api/event', [authJwt.verifyToken], eventController.list);
 router.get('/api/event/:id', [authJwt.verifyToken], eventController.getById);
