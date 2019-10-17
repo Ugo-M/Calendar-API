@@ -140,8 +140,13 @@ module.exports = {
     },
 
     delete(req, res) {
+        console.log("name : " + req.body.username);
         return User
-            .findByPk(req.params.id)
+            .findOne({
+                where: {
+                    username: req.body.username
+                }
+            })
             .then(user => {
                 if (!user) {
                     return res.status(400).send({
