@@ -65,4 +65,19 @@ describe("API test",function(){
             });
     });
 
+
+    it("should successfully make a get request with arguments as authenticated user test",function(done) {
+        server
+            .get("/api/user/name")
+            .set('token',token)
+            .send({username : "test"})
+            .expect("Content-type", /json/)
+            .expect(200)
+            .end(function (err, res) {
+                console.log(res.body);
+                res.status.should.equal(200);
+                done();
+            });
+    });
+
 });
