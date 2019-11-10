@@ -5,14 +5,17 @@
 ## Install
 
 ```
-cd projetJS
 npm install
-sudo npm install -g nodemon
 ```
 
 ## Launch:
 ```
-nodemon
+npm start
+```
+
+## Lauch tests:
+```
+npm test
 ```
 
 ### Example of a curl request to sign up:
