@@ -1,3 +1,8 @@
+site_name: Calendar-API
+nav:
+    - Home: index.md
+    - About: about.md
+
 # Welcome to MkDocs
 
 For full documentation visit [mkdocs.org](https://mkdocs.org).
