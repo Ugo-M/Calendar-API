@@ -119,8 +119,8 @@
 </code></pre>
 <h4 id="parameters">parameters</h4>
 <pre><code>{
-    "username" : "example",
-    "password" : "pass"
+    "username" : "foo",
+    "password" : "bar"
 }
 </code></pre>
 <h4 id="return">Return</h4>
@@ -147,8 +147,50 @@
 </tbody>
 </table>
 <h4 id="exemple">exemple</h4>
-<pre><code>    curl -i -X POST -H &quot;Content-Type: application/json&quot; -d '{ &quot;username&quot;:&quot;example&quot;,&quot;password&quot;:&quot;pass&quot; }' localhost:3000/api/auth/signup
-</code></pre></div>
+<pre><code>curl -i -X POST -H &quot;Content-Type: application/json&quot; -d '{ &quot;username&quot;:&quot;foo&quot;,&quot;password&quot;:&quot;bar&quot; }' localhost:3000/api/auth/signup
+</code></pre>
+
+<p>### Log In</p>
+<p>#### route
+     /api/auth/login</p>
+<p>#### parameters</p>
+<pre><code> {
+     "username" : "foo",
+     "password" : "bar"
+ }
+</code></pre>
+<p>#### Return </p>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>{"auth": true, "accessToken": "..." }</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Invalid password!</td>
+</tr>
+<tr>
+<td>404</td>
+<td>User not found.</td>
+</tr>
+</tbody>
+</table>
+<p>#### exemple</p>
+<p><code>curl -X POST \
+  http://localhost:3000/api/auth/login/ \
+  -H 'Content-Type: application/json' \
+  -H 'Host: localhost:3000' \
+  -d '{
+    "username": "foo",
+    "password": "bar"
+}'</code></p></div>
         </div>
 
         <footer class="col-md-12">
