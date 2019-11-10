@@ -114,24 +114,39 @@
 
 <h2 id="authentication">Authentication</h2>
 <h3 id="sign-up">Sign up</h3>
-<pre><code>route : "/api/auth/signup"
-
-parameters :
-{
+<h4 id="route">route</h4>
+<pre><code>/api/auth/signup
+</code></pre>
+<h4 id="parameters">parameters</h4>
+<pre><code>{
     "username" : "example",
     "password" : "pass"
 }
-
-Return :
-
-| Status code |               message              |
-|:-----------:|:----------------------------------:|
-|     201     |       OK -&gt; created user foo       |
-|     400     | Fail -&gt; Username is already taken! |
-|     400     |          missing arguments         |
-
-exemple with a curl request
 </code></pre>
+<h4 id="return">Return</h4>
+<table>
+<thead>
+<tr>
+<th align="center">Status code</th>
+<th align="center">message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">201</td>
+<td align="center">OK -&gt; created user foo</td>
+</tr>
+<tr>
+<td align="center">400</td>
+<td align="center">Fail -&gt; Username is already taken!</td>
+</tr>
+<tr>
+<td align="center">400</td>
+<td align="center">missing arguments</td>
+</tr>
+</tbody>
+</table>
+<h4 id="exemple">exemple</h4>
 <pre><code>    curl -i -X POST -H &quot;Content-Type: application/json&quot; -d '{ &quot;username&quot;:&quot;example&quot;,&quot;password&quot;:&quot;pass&quot; }' localhost:3000/api/auth/signup
 </code></pre></div>
         </div>
