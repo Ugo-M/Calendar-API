@@ -1,26 +1,68 @@
-## Authentication   
+## Authentication  
+
  
 ### Sign up
- 
-    route : "/api/auth/signup"
+
+
+#### route
+    /api/auth/signup
     
-    parameters :
+#### parameters
+
     {
-        "username" : "example",
-        "password" : "pass"
+        "username" : "foo",
+        "password" : "bar"
     }
+
+
+#### Return 
     
-    Return :
+| Status code 	| message                            	|
+|-------------	|------------------------------------	|
+| 201         	| OK -> created user foo             	|
+| 400         	| Fail -> Username is already taken! 	|
+| 400         	| missing arguments                  	|
     
-    | Status code |               message              |
-    |:-----------:|:----------------------------------:|
-    |     201     |       OK -> created user foo       |
-    |     400     | Fail -> Username is already taken! |
-    |     400     |          missing arguments         |
-    
-    exemple with a curl request
-    
+
+#### exemple
+
 ```
-    curl -i -X POST -H "Content-Type: application/json" -d '{ "username":"example","password":"pass" }' localhost:3000/api/auth/signup
-```
+curl -i -X POST -H "Content-Type: application/json" -d '{ "username":"foo","password":"bar" }' localhost:3000/api/auth/signup
+``` 
+
  
+### Log In
+ 
+ 
+#### route
+     /api/auth/login
+     
+#### parameters
+ 
+     {
+         "username" : "foo",
+         "password" : "bar"
+     }
+ 
+ 
+#### Return 
+     
+ | Status code 	| message                            	|
+ |-------------	|------------------------------------	|
+ | 200         	| {"auth": true, "accessToken": "..." } |
+ | 401         	| Invalid password!                  	|
+ | 404         	| User not found.                     	|
+     
+ 
+#### exemple
+ 
+```
+curl -X POST \
+  http://localhost:3000/api/auth/login/ \
+  -H 'Content-Type: application/json' \
+  -H 'Host: localhost:3000' \
+  -d '{
+	"username": "foo",
+	"password": "bar"
+}'
+```
