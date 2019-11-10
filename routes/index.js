@@ -21,7 +21,6 @@ router.get('/api/user/name/', [authJwt.verifyToken],userController.getByName);
 router.get('/api/user/id/', [authJwt.verifyToken],userController.getId);
 router.put('/api/user/:id', [authJwt.verifyToken], userController.update);
 router.delete('/api/user', [authJwt.verifyToken], userController.delete);
-router.post('/api/user', [authJwt.verifyToken], userController.addWithCalendars);
 
 router.get('/api/calendar', [authJwt.verifyToken], calendarController.list);
 router.get('/api/calendar/:id', [authJwt.verifyToken], calendarController.getById);

@@ -69,15 +69,15 @@ module.exports = {
                 where:{
                     username: req.body.username,
                 },
-                attributes:[id],
+                attributes:['id'],
             })
-            .then((user) => {
-                if (!user) {
+            .then((id) => {
+                if (!id) {
                     return res.status(404).send({
                         message: 'User Not Found',
                     });
                 }
-                return res.status(200).send(user);
+                return res.status(200).send(id);
             })
             .catch((error) => res.status(400).send(error));
     },
@@ -119,22 +119,6 @@ module.exports = {
         }).catch(err => {
             res.status(500).send('Error -> ' + err);
         });
-    },
-
-    addWithCalendars(req, res) {
-        return User
-            .create({
-                username: req.body.username,
-                password: bcrypt.hashSync(req.body.password, 8),
-                calendars: req.body.calendars,
-            }, {
-                include: [{
-                    model: Calendar,
-                    as: 'calendars'
-                }]
-            })
-            .then((user) => res.status(201).send(user))
-            .catch((error) => res.status(400).send(error));
     },
 
     update(req, res) {
