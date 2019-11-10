@@ -1,6 +1,12 @@
 site_name: Restful Calendar API
 nav:
   - Home: index.md
+  - Routes:
+      - 'Index': 'routes/index.md'
+      - 'Authentication': 'routes/authentication.md'
+      - 'Calendar': 'routes/calendar.md'
+      - 'Event': 'routes/event.md'
+      - 'User': 'routes/user.md'
   - About: about.md
 
 repo_url: https://github.com/Ugo-M/Calendar-API
