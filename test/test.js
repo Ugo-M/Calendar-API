@@ -5,10 +5,12 @@ const app = require('../app');
 let server = supertest.agent(app);
 const crypto = require("crypto");
 
-var user = crypto.randomBytes(10).toString('hex');
-var passwd = crypto.randomBytes(10).toString('hex');
-var userid = "";
+let user = crypto.randomBytes(10).toString('hex');
+let newuser = crypto.randomBytes(10).toString('hex');
+let passwd = crypto.randomBytes(10).toString('hex');
+let userid = "";
 let idcal = "";
+let evntid = "";
 let token = "";
 
 describe("API test",function(){
@@ -65,7 +67,7 @@ describe("API test",function(){
             });
     });
 
-    it("should successfully make an authenticated get request as the new user",function(done) {
+    it("should make an authenticated get request as the new user",function(done) {
         server
             .get("/api/user")
             .set('token',token)
@@ -79,7 +81,7 @@ describe("API test",function(){
     });
 
 
-    it("should successfully make an authenticated get request with arguments as the new user",function(done) {
+    it("should make an authenticated get request with arguments as the new user",function(done) {
         server
             .get("/api/user/name")
             .set('token',token)
@@ -88,6 +90,34 @@ describe("API test",function(){
             .end(function (err, res) {
                 res.status.should.equal(200);
                 userid = res.body.id;
+                done();
+            });
+    });
+
+
+    it("should return the new user's id",function(done) {
+        server
+            .get("/api/user/id")
+            .set('token',token)
+            .send({username : user})
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                console.log(res.body);
+                res.status.should.equal(200);
+                userid = res.body.id;
+                done();
+            });
+    });
+
+
+    it("should update the new user",function(done) {
+        server
+            .put("/api/user/"+userid)
+            .set('token',token)
+            .send({username : newuser})
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(200);
                 done();
             });
     });
@@ -124,7 +154,7 @@ describe("API test",function(){
         server
             .delete("/api/user/")
             .set('token',token)
-            .send({username : user})
+            .send({username : newuser})
             .expect("Content-type", /json/)
             .end(function (err, res) {
                 res.status.should.equal(204);
