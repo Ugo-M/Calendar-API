@@ -83,13 +83,16 @@ module.exports = {
     },
 
     signup(req, res) {
-        return User
-            .create({
-                username: req.body.username,
-                password: bcrypt.hashSync(req.body.password, 8),
-            })
-            .then((user) => res.status(201).send(user))
-            .catch((error) => res.status(400).send(error));
+        if (req.body.username && req.body.password) {
+            return User
+                .create({
+                    username: req.body.username,
+                    password: bcrypt.hashSync(req.body.password, 8),
+                })
+                .then((user) => res.status(201).send("OK -> created user " + user.username))
+                .catch((error) => res.status(400).send(error));
+        }
+        return res.status(400).send("missing arguments")
     },
 
     login(req, res) {
@@ -174,7 +177,7 @@ module.exports = {
                 }
                 return user
                     .destroy()
-                    .then(() => res.status(204).send())
+                    .then(() => res.status(204).send("User deleted"))
                     .catch((error) => res.status(400).send(error));
             })
             .catch((error) => res.status(400).send(error));
