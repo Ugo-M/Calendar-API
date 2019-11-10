@@ -108,6 +108,7 @@
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#authentication">Authentication</a></li>
             <li><a href="#sign-up">Sign up</a></li>
+            <li><a href="#log-in">Log In</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -150,16 +151,17 @@
 <pre><code>curl -i -X POST -H &quot;Content-Type: application/json&quot; -d '{ &quot;username&quot;:&quot;foo&quot;,&quot;password&quot;:&quot;bar&quot; }' localhost:3000/api/auth/signup
 </code></pre>
 
-<p>### Log In</p>
-<p>#### route
-     /api/auth/login</p>
-<p>#### parameters</p>
+<h3 id="log-in">Log In</h3>
+<h4 id="route_1">route</h4>
+<pre><code> /api/auth/login
+</code></pre>
+<h4 id="parameters_1">parameters</h4>
 <pre><code> {
      "username" : "foo",
      "password" : "bar"
  }
 </code></pre>
-<p>#### Return </p>
+<h4 id="return_1">Return</h4>
 <table>
 <thead>
 <tr>
@@ -182,7 +184,7 @@
 </tr>
 </tbody>
 </table>
-<p>#### exemple</p>
+<h4 id="exemple_1">exemple</h4>
 <p><code>curl -X POST \
   http://localhost:3000/api/auth/login/ \
   -H 'Content-Type: application/json' \
