@@ -17,7 +17,7 @@ module.exports = {
                     [{ model: Calendar, as: 'calendars' }, 'createdAt', 'DESC'],
                 ],
             })
-            .then((classrooms) => res.status(200).send(classrooms))
+            .then((calendars) => res.status(200).send(calendars))
             .catch((error) => { res.status(400).send(error); });
     },
 
@@ -91,33 +91,33 @@ module.exports = {
                 .then((user) => res.status(201).send("OK -> created user " + user.username))
                 .catch((error) => res.status(400).send(error));
         }
-        return res.status(400).send("missing arguments")
+        return res.status(400).send("missing arguments");
     },
 
     login(req, res) {
-        User.findOne({
-            where: {
-                username: req.body.username
-            }
-        }).then(user => {
-            if (!user) {
-                return res.status(404).send('User Not Found.');
-            }
+            User.findOne({
+                where: {
+                    username: req.body.username
+                }
+            }).then(user => {
+                if (!user) {
+                    return res.status(404).send('User Not Found.');
+                }
 
-            let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-            if (!passwordIsValid) {
-                return res.status(401).send({ auth: false, accessToken: null, reason: "Invalid Password!" });
-            }
+                let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+                if (!passwordIsValid) {
+                    return res.status(401).send({auth: false, accessToken: null, reason: "Invalid Password!"});
+                }
 
-            let token = jwt.sign({ id: user.id }, config.secret, {
-                expiresIn: 86400 // 24 hours
+                let token = jwt.sign({id: user.id}, config.secret, {
+                    expiresIn: 86400 // 24 hours
+                });
+
+                res.status(200).send({auth: true, accessToken: token});
+
+            }).catch(err => {
+                res.status(500).send('Error -> ' + err);
             });
-
-            res.status(200).send({ auth: true, accessToken: token });
-
-        }).catch(err => {
-            res.status(500).send('Error -> ' + err);
-        });
     },
 
     update(req, res) {
@@ -145,7 +145,6 @@ module.exports = {
     },
 
     delete(req, res) {
-        console.log("name : " + req.body.username);
         return User
             .findOne({
                 where: {
