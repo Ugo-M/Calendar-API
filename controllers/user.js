@@ -41,11 +41,10 @@ module.exports = {
     },
 
     getByName(req, res) {
-        console.log(req.body);
         return User
             .findOne({
                 where:{
-                    username: req.body.username,
+                    username: req.params.name,
                 },
                 include: [{
                     model: Calendar,
@@ -155,7 +154,7 @@ module.exports = {
             })
             .then(user => {
                 if (!user) {
-                    return res.status(400).send({
+                    return res.status(404).send({
                         message: 'User Not Found',
                     });
                 }

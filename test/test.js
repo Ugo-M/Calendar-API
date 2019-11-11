@@ -8,6 +8,7 @@ const crypto = require("crypto");
 let user = crypto.randomBytes(10).toString('hex');
 let newuser = crypto.randomBytes(10).toString('hex');
 let passwd = crypto.randomBytes(10).toString('hex');
+let fakeid = 9999;
 let userid = "";
 let idcal = "";
 let evntid = "";
@@ -24,6 +25,7 @@ describe("API test",function(){
             });
     });
 
+
     it("should return 404",function(done) {
         server
             .get("/random")
@@ -32,6 +34,7 @@ describe("API test",function(){
                 done();
             });
     });
+
 
     it("should create a new user",function(done) {
         server
@@ -44,6 +47,7 @@ describe("API test",function(){
             });
     });
 
+
     it("should login as the newly created user",function(done) {
         server
             .post("/api/auth/login")
@@ -55,6 +59,19 @@ describe("API test",function(){
                 done();
             });
     });
+
+
+    it("should return 404 after attempting to login as an unregistered user",function(done) {
+        server
+            .post("/api/auth/login")
+            .send({username : newuser, password : passwd})
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
+                done();
+            });
+    });
+
 
     it("should return 'no token provided' after an unauthenticated request",function(done) {
         server
@@ -80,15 +97,28 @@ describe("API test",function(){
     });
 
 
-    it("should make an authenticated get request with arguments as the new user",function(done) {
+    it("should return the user's id from his name",function(done) {
         server
-            .get("/api/user/name")
+            .get("/api/user/name/"+user)
             .set('token',token)
-            .send({username : user})
+            .send()
             .expect("Content-type", /json/)
             .end(function (err, res) {
                 res.status.should.equal(200);
                 userid = res.body.id;
+                done();
+            });
+    });
+
+
+    it("should return 404 after a getByName request on a nonexistent user",function(done) {
+        server
+            .get("/api/user/name/"+newuser)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
                 done();
             });
     });
@@ -108,7 +138,20 @@ describe("API test",function(){
     });
 
 
-    it("should return the new user from its id",function(done) {
+    it("should return 404 after a getId request on a nonexistent user",function(done) {
+        server
+            .get("/api/user/id")
+            .set('token',token)
+            .send({username : newuser})
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
+                done();
+            });
+    });
+
+
+    it("should return the new user from his id",function(done) {
         server
             .get("/api/user/id/"+userid)
             .set('token',token)
@@ -116,6 +159,19 @@ describe("API test",function(){
             .expect("Content-type", /json/)
             .end(function (err, res) {
                 res.status.should.equal(200);
+                done();
+            });
+    });
+
+
+    it("should return 404 after a getById request on a nonexistent user",function(done) {
+        server
+            .get("/api/user/id/"+fakeid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
                 done();
             });
     });
@@ -129,6 +185,19 @@ describe("API test",function(){
             .expect("Content-type", /json/)
             .end(function (err, res) {
                 res.status.should.equal(200);
+                done();
+            });
+    });
+
+
+    it("should return 404 after an update request on a nonexistent user",function(done) {
+        server
+            .put("/api/user/"+fakeid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
                 done();
             });
     });
@@ -173,6 +242,19 @@ describe("API test",function(){
     });
 
 
+    it("should return 404 after a getById request on a nonexistent calendar",function(done) {
+        server
+            .get("/api/calendar/"+fakeid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
+                done();
+            });
+    });
+
+
     it("should update the new calendar",function(done) {
         server
             .put("/api/calendar/"+idcal)
@@ -184,6 +266,20 @@ describe("API test",function(){
                 done();
             });
     });
+
+
+    it("should return 404 after an update request on a nonexistent calendar",function(done) {
+        server
+            .put("/api/calendar/"+fakeid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
+                done();
+            });
+    });
+
 
     it("should add an event to the new user's calendar",function(done) {
         server
@@ -224,6 +320,19 @@ describe("API test",function(){
     });
 
 
+    it("should return 404 after a getById request on a nonexistent event",function(done) {
+        server
+            .get("/api/event/"+fakeid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
+                done();
+            });
+    });
+
+
     it("should update the new event",function(done) {
         server
             .put("/api/event/"+evntid)
@@ -233,6 +342,19 @@ describe("API test",function(){
             .end(function (err, res) {
                 res.status.should.equal(200);
                 console.log(res.body);
+                done();
+            });
+    });
+
+
+    it("should return 404 after an update request on a nonexistent event",function(done) {
+        server
+            .put("/api/event/"+fakeid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
                 done();
             });
     });
@@ -251,6 +373,19 @@ describe("API test",function(){
     });
 
 
+    it("should return 404 after an delete request on a nonexistent event",function(done) {
+        server
+            .delete("/api/event/"+fakeid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
+                done();
+            });
+    });
+
+
     it("should delete the new calendar",function(done) {
         server
             .delete("/api/calendar/"+idcal)
@@ -264,6 +399,19 @@ describe("API test",function(){
     });
 
 
+    it("should return 404 after an delete request on a nonexistent calendar",function(done) {
+        server
+            .delete("/api/calendar/"+fakeid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
+                done();
+            });
+    });
+
+
     it("should delete the new user",function(done) {
         server
             .delete("/api/user/")
@@ -272,6 +420,19 @@ describe("API test",function(){
             .expect("Content-type", /json/)
             .end(function (err, res) {
                 res.status.should.equal(204);
+                done();
+            });
+    });
+
+
+    it("should return 404 after an delete request on a nonexistent user",function(done) {
+        server
+            .delete("/api/user/"+fakeid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(404);
                 done();
             });
     });
