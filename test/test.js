@@ -38,7 +38,7 @@ describe("API test",function(){
 
     it("should create a new user",function(done) {
         server
-            .post("/api/auth/signup")
+            .post("/api/user/auth/signup")
             .send({username : user, password : passwd})
             .expect("Content-type", /json/)
             .end(function (err, res) {
@@ -48,9 +48,21 @@ describe("API test",function(){
     });
 
 
+    it("should return 400 after after attempting to signup without a password or username",function(done) {
+        server
+            .post("/api/user/auth/signup")
+            .send({username : newuser})
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(400);
+                done();
+            });
+    });
+
+
     it("should login as the newly created user",function(done) {
         server
-            .post("/api/auth/login")
+            .post("/api/user/auth/login")
             .send({username : user, password : passwd})
             .expect("Content-type", /json/)
             .end(function (err, res) {
@@ -61,9 +73,21 @@ describe("API test",function(){
     });
 
 
+    it("should return 401 after attempting to login with the wrong password",function(done) {
+        server
+            .post("/api/user/auth/login")
+            .send({username : user, password : "fakepass"})
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(401);
+                done();
+            });
+    });
+
+
     it("should return 404 after attempting to login as an unregistered user",function(done) {
         server
-            .post("/api/auth/login")
+            .post("/api/user/auth/login")
             .send({username : newuser, password : passwd})
             .expect("Content-type", /json/)
             .end(function (err, res) {
@@ -73,16 +97,16 @@ describe("API test",function(){
     });
 
 
-    it("should return 'no token provided' after an unauthenticated request",function(done) {
+    it("should return 403 after an unauthenticated request",function(done) {
         server
             .get("/api/user")
             .expect("Content-type", /json/)
             .end(function (err, res) {
-                console.log(res.body.message);
                 res.status.should.equal(403);
                 done();
             });
     });
+
 
     it("should make an authenticated get request as the new user",function(done) {
         server
@@ -341,7 +365,6 @@ describe("API test",function(){
             .expect("Content-type", /json/)
             .end(function (err, res) {
                 res.status.should.equal(200);
-                console.log(res.body);
                 done();
             });
     });
@@ -406,7 +429,6 @@ describe("API test",function(){
             .send()
             .expect("Content-type", /json/)
             .end(function (err, res) {
-                res.status.should.equal(404);
                 done();
             });
     });
