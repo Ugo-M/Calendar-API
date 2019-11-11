@@ -7,11 +7,11 @@ module.exports = {
             .findAll({
                 include: [{
                     model: Calendar,
-                    as: 'calendars'
+                    as: 'calendar'
                 }],
                 order: [
                     ['createdAt', 'DESC'],
-                    [{ model: Calendar, as: 'calendars' }, 'createdAt', 'DESC'],
+                    [{ model: Calendar, as: 'calendar' }, 'createdAt', 'DESC'],
                 ],
             })
             .then((events) => res.status(200).send(events))
@@ -20,12 +20,7 @@ module.exports = {
 
     getById(req, res) {
         return Event
-            .findByPk(req.params.id, {
-                include: [{
-                    model: Event,
-                    as: 'event'
-                }],
-            })
+            .findByPk(req.params.id)
             .then((event) => {
                 if (!event) {
                     return res.status(404).send({
@@ -52,12 +47,7 @@ module.exports = {
 
     update(req, res) {
         return Event
-            .findByPk(req.params.id, {
-                include: [{
-                    model: Event,
-                    as: 'event'
-                }],
-            })
+            .findByPk(req.params.id)
             .then(event => {
                 if (!event) {
                     return res.status(404).send({
