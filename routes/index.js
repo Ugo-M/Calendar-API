@@ -17,8 +17,8 @@ router.post('/api/auth/login', userController.login);
 
 router.get('/api/user', [authJwt.verifyToken], userController.list);
 router.get('/api/user/id/:id', [authJwt.verifyToken], userController.getById);
-router.get('/api/user/name/', [authJwt.verifyToken],userController.getByName);
-router.get('/api/user/id/', [authJwt.verifyToken],userController.getId);
+router.get('/api/user/name/:name', [authJwt.verifyToken],userController.getByName);
+router.get('/api/user/id', [authJwt.verifyToken],userController.getId);
 router.put('/api/user/:id', [authJwt.verifyToken], userController.update);
 router.delete('/api/user', [authJwt.verifyToken], userController.delete);
 

@@ -86,7 +86,7 @@ module.exports = {
             .findByPk(req.params.id)
             .then(calendar => {
                 if (!calendar) {
-                    return res.status(400).send({
+                    return res.status(404).send({
                         message: 'Calendar Not Found',
                     });
                 }
