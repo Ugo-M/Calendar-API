@@ -61,8 +61,8 @@ describe("API test",function(){
             .get("/api/user")
             .expect("Content-type", /json/)
             .end(function (err, res) {
+                console.log(res.body.message);
                 res.status.should.equal(403);
-                console.log(res.body);
                 done();
             });
     });
@@ -75,7 +75,6 @@ describe("API test",function(){
             .expect("Content-type", /json/)
             .end(function (err, res) {
                 res.status.should.equal(200);
-                console.log(res.body);
                 done();
             });
     });
@@ -102,9 +101,21 @@ describe("API test",function(){
             .send({username : user})
             .expect("Content-type", /json/)
             .end(function (err, res) {
-                console.log(res.body);
                 res.status.should.equal(200);
                 userid = res.body.id;
+                done();
+            });
+    });
+
+
+    it("should return the new user from its id",function(done) {
+        server
+            .get("/api/user/id/"+userid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(200);
                 done();
             });
     });
@@ -123,7 +134,7 @@ describe("API test",function(){
     });
 
 
-    it("should create a calendar and an event for the new user",function(done) {
+    it("should create a calendar for the new user",function(done) {
         server
             .post("/api/calendar")
             .set('token',token)
@@ -136,19 +147,122 @@ describe("API test",function(){
             });
     });
 
-    it("should create a calendar and an event for the new user",function(done) {
+    it("should return all the calendars",function(done) {
+        server
+            .get("/api/calendar")
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(200);
+                done();
+            });
+    });
+
+
+    it("should return the new calendar from its id",function(done) {
+        server
+            .get("/api/calendar/"+idcal)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(200);
+                done();
+            });
+    });
+
+
+    it("should update the new calendar",function(done) {
+        server
+            .put("/api/calendar/"+idcal)
+            .set('token',token)
+            .send({calendar_name : "new_calendar_name"})
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(200);
+                done();
+            });
+    });
+
+    it("should add an event to the new user's calendar",function(done) {
         server
             .post("/api/event")
             .set('token',token)
             .send({calendar_id : idcal, event_name: 'test_event', event_beginning: moment(), event_end: moment().add(2, 'hours'), event_type: 'test'})
             .expect("Content-type", /json/)
             .end(function (err, res) {
-                console.log(res.body);
-
                 res.status.should.equal(201);
+                evntid = res.body.id;
                 done();
             });
     });
+
+    it("should return all the events",function(done) {
+        server
+            .get("/api/event")
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(200);
+                done();
+            });
+    });
+
+
+    it("should return the new event from its id",function(done) {
+        server
+            .get("/api/event/"+evntid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(200);
+                done();
+            });
+    });
+
+
+    it("should update the new event",function(done) {
+        server
+            .put("/api/event/"+evntid)
+            .set('token',token)
+            .send({event_name : "new_event_name"})
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(200);
+                console.log(res.body);
+                done();
+            });
+    });
+
+
+    it("should delete the new event",function(done) {
+        server
+            .delete("/api/event/"+evntid)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(204);
+                done();
+            });
+    });
+
+
+    it("should delete the new calendar",function(done) {
+        server
+            .delete("/api/calendar/"+idcal)
+            .set('token',token)
+            .send()
+            .expect("Content-type", /json/)
+            .end(function (err, res) {
+                res.status.should.equal(204);
+                done();
+            });
+    });
+
 
     it("should delete the new user",function(done) {
         server
@@ -158,7 +272,6 @@ describe("API test",function(){
             .expect("Content-type", /json/)
             .end(function (err, res) {
                 res.status.should.equal(204);
-                console.log(res.body);
                 done();
             });
     });
