@@ -1,17 +1,25 @@
-# Welcome to MkDocs
+# Welcome to the doc
 
-For full documentation visit [mkdocs.org](https://mkdocs.org).
+[![Build Status](https://travis-ci.org/Ugo-M/Calendar-API.svg?branch=master)](https://travis-ci.org/Ugo-M/Calendar-API)
+[![codecov](https://codecov.io/gh/Ugo-M/Calendar-API/branch/master/graph/badge.svg)](https://codecov.io/gh/Ugo-M/Calendar-API)
 
-## Commands
+## Installing the API
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+* `npm install` - Install the dependencies.
+*  Edit the [config/config.json](https://github.com/Ugo-M/Calendar-API/blob/master/config/config.json) file to match your database info.
+* `npm run initdb` - Initialize the database.
 
 ## Project layout
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+    config/         # configuration files
+    docs/           # The documentation pages.
+    migrations/     # Sequelize migrations to initialize the database.
+    models/         # The documentation pages.
+    routes/         # API routes definition.
+    test/           # Tests.
+    views/          # Express vues.
+    .sequelizerc    # Sequelize configuration file
+    .travis.yml     # Travis CI configuration file.
+    app.js          # app.js
+    mkdocs.yml      # MkDocs configuration file.
+    
