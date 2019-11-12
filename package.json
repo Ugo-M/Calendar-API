@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node bin/www",
     "test": "nyc --reporter=lcov mocha --timeout=3000",
-    "coverage": "codecov"
+    "coverage": "codecov",
+    "initdb": "sequelize db:migrate"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
