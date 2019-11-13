@@ -102,11 +102,243 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#list-all-users-and-their-events">List all users and their events</a></li>
+            <li><a href="#route-get">route (GET)</a></li>
+            <li><a href="#header">header</a></li>
+            <li><a href="#return">Return</a></li>
+            <li><a href="#example">example</a></li>
+        <li class="main "><a href="#get-a-event-from-his-id">Get a event from his id</a></li>
+            <li><a href="#route-get_1">route (GET)</a></li>
+            <li><a href="#header_1">header</a></li>
+            <li><a href="#return_1">Return</a></li>
+            <li><a href="#example_1">example</a></li>
+        <li class="main "><a href="#add-a-event">Add a event</a></li>
+            <li><a href="#route-post">route (POST)</a></li>
+            <li><a href="#header_2">header</a></li>
+            <li><a href="#parameters">parameters</a></li>
+            <li><a href="#return_2">Return</a></li>
+            <li><a href="#example_2">example</a></li>
+        <li class="main "><a href="#update-a-events-name">update a event's name</a></li>
+            <li><a href="#route-put">route  (PUT)</a></li>
+            <li><a href="#header_3">header</a></li>
+            <li><a href="#parameters_1">parameters</a></li>
+            <li><a href="#return_3">Return</a></li>
+            <li><a href="#example_3">example</a></li>
+        <li class="main "><a href="#delete-a-event">delete a event</a></li>
+            <li><a href="#route-delete">route  (DELETE)</a></li>
+            <li><a href="#header_4">header</a></li>
+            <li><a href="#parameters_2">parameters</a></li>
+            <li><a href="#return_4">Return</a></li>
+            <li><a href="#example_4">example</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-</div>
+<h3 id="list-all-users-and-their-events">List all users and their events</h3>
+<h4 id="route-get">route (GET)</h4>
+<pre><code> /api/event/
+</code></pre>
+<h4 id="header">header</h4>
+<p>JWT token</p>
+<pre><code>'token: eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9'
+</code></pre>
+<h4 id="return">Return</h4>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Events</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example">example</h4>
+<pre><code>curl -X GET http://localhost:3000/api/event/ \
+  -H 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9.46h6B23lSofOtpf28wEKPI3DXLyzC__bCxMfbkT-5l0'
+</code></pre>
+
+<h3 id="get-a-event-from-his-id">Get a event from his id</h3>
+<h4 id="route-get_1">route (GET)</h4>
+<pre><code> /api/event/:id
+</code></pre>
+<h4 id="header_1">header</h4>
+<p>JWT token</p>
+<pre><code>'token: eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9'
+</code></pre>
+<h4 id="return_1">Return</h4>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>404</td>
+<td>'Event not found'</td>
+</tr>
+<tr>
+<td>400</td>
+<td>error</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example_1">example</h4>
+<pre><code>curl -X GET \ 
+  http://localhost:3000/api/event/42 \
+  -H 'Host: localhost:3000' \
+  -H 'Content-Type: application/json' \
+  -H 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9.46h6B23lSofOtpf28wEKPI3DXLyzC__bCxMfbkT-5l0'
+</code></pre>
+
+<h3 id="add-a-event">Add a event</h3>
+<h4 id="route-post">route (POST)</h4>
+<pre><code>/api/event/
+</code></pre>
+<h4 id="header_2">header</h4>
+<p>JWT token</p>
+<pre><code>'token: eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9'
+</code></pre>
+<h4 id="parameters">parameters</h4>
+<pre><code> {
+     user_id : 42,
+     event_name : 'foo'
+ }
+</code></pre>
+<h4 id="return_2">Return</h4>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>400</td>
+<td>error</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example_2">example</h4>
+<pre><code>curl -X POST \
+  http://localhost:3000/api/event/ \
+  -H 'Host: localhost:3000' \
+  -H 'Content-Type: application/json' \
+  -H 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9.46h6B23lSofOtpf28wEKPI3DXLyzC__bCxMfbkT-5l0' \
+  -d '{
+    username: 42,
+    event_name: 'foo'
+   }'
+</code></pre>
+
+<h3 id="update-a-events-name">update a event's name</h3>
+<h4 id="route-put">route  (PUT)</h4>
+<pre><code> /api/event/:id
+</code></pre>
+<h4 id="header_3">header</h4>
+<p>JWT token</p>
+<pre><code>'token: eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9'
+</code></pre>
+<h4 id="parameters_1">parameters</h4>
+<pre><code> {
+     "username" : "foo"
+ }
+</code></pre>
+<h4 id="return_3">Return</h4>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Event</td>
+</tr>
+<tr>
+<td>404</td>
+<td>'Event not found'</td>
+</tr>
+<tr>
+<td>400</td>
+<td>error</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example_3">example</h4>
+<pre><code>curl -X PUT \ 
+  http://localhost:3000/api/event/1 \
+  -H 'Host: localhost:3000' \
+  -H 'Content-Type: application/json' \
+  -H 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9.46h6B23lSofOtpf28wEKPI3DXLyzC__bCxMfbkT-5l0' \ 
+  -d '{
+    username: 'foo'
+  }'
+</code></pre>
+
+<h3 id="delete-a-event">delete a event</h3>
+<h4 id="route-delete">route  (DELETE)</h4>
+<pre><code> /api/event/
+</code></pre>
+<h4 id="header_4">header</h4>
+<p>JWT token</p>
+<pre><code>'token: eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9'
+</code></pre>
+<h4 id="parameters_2">parameters</h4>
+<pre><code> {
+     "username" : "foo"
+ }
+</code></pre>
+<h4 id="return_4">Return</h4>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>204</td>
+<td>'Event deleted'</td>
+</tr>
+<tr>
+<td>404</td>
+<td>'Event not found'</td>
+</tr>
+<tr>
+<td>400</td>
+<td>error</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example_4">example</h4>
+<pre><code>curl -X DELETE \ 
+  http://localhost:3000/api/event/ \
+  -H 'Host: localhost:3000' \
+  -H 'Content-Type: application/json' \
+  -H 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9.46h6B23lSofOtpf28wEKPI3DXLyzC__bCxMfbkT-5l0' \ 
+  -d '{
+    &quot;username&quot;: &quot;foo&quot;
+  }'
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
