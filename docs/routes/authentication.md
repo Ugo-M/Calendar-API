@@ -1,10 +1,10 @@
-## Authentication  
+# Authentication  
 
  
-### Sign up
+## Sign up
 
 
-#### route
+#### route  (POST)
     /api/user/auth/signup
     
 #### parameters
@@ -38,10 +38,10 @@ curl -X POST \
 ``` 
 
  
-### Log In
+## Log In
  
  
-#### route
+#### route  (POST)
      /api/user/auth/login
      
 #### parameters

@@ -1,7 +1,9 @@
 site_name: Restful Calendar API
-repo_url: https://github.com/Ugo-M/Calendar-API/
-repo_name: 'Github'
+
 theme: mkdocs
+
+repo_url: https://github.com/Ugo-M/Calendar-API/
+edit_uri: ''
 
 nav:
   - Home: index.md
