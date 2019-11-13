@@ -75,34 +75,6 @@ curl -X GET http://localhost:3000/api/user/id/1 -H 'token: eyJhbGciOiJIUzI1NiIsI
  | 400         	| error                                 |
      
  
-#### example
- 
-```
-curl -X GET http://localhost:3000/api/user/name/foo -H 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9.46h6B23lSofOtpf28wEKPI3DXLyzC__bCxMfbkT-5l0'
-```
-
-
-### Get an user from his name
- 
- 
-#### route
-     /api/user/name/:name
-     
-#### header
- JWT token
- 
-    'token: eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9'
- 
-
- 
-#### Return 
-     
- | Status code 	| message                            	|
- |-------------	|------------------------------------	|
- | 200         	| User                                  |
- | 404         	| 'User not found'                      |
- | 400         	| error                                 |
-     
  
 #### example
  
