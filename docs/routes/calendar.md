@@ -1,5 +1,7 @@
+# Calendar routes  
+
  
-### List all users and their calendars
+## List all users and their calendars
  
  
 #### route (GET)
@@ -25,7 +27,7 @@ curl -X GET http://localhost:3000/api/calendar/ \
   -H 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9.46h6B23lSofOtpf28wEKPI3DXLyzC__bCxMfbkT-5l0'
 ```
 
-### Get a calendar from his id
+## Get a calendar from his id
  
  
 #### route (GET)
@@ -58,7 +60,7 @@ curl -X GET \
 ```
 
 
-### Add a calendar
+## Add a calendar
  
  
 #### route (POST)
@@ -100,7 +102,7 @@ curl -X POST \
 ```
 
 
-### update a calendar's name
+## update a calendar's name
  
  
 #### route  (PUT)
@@ -141,7 +143,7 @@ curl -X PUT \
 ```
 
 
-### delete a calendar
+## delete a calendar
  
  
 #### route  (DELETE)
