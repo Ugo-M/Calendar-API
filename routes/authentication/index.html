@@ -53,10 +53,6 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Routes <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
-<li >
-    <a href="../">Index</a>
-</li>
-                                    
 <li class="active">
     <a href="./">Authentication</a>
 </li>
@@ -86,7 +82,7 @@
                             </a>
                         </li>
                             <li >
-                                <a rel="next" href="../">
+                                <a rel="next" href="../..">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -116,7 +112,7 @@
 <h2 id="authentication">Authentication</h2>
 <h3 id="sign-up">Sign up</h3>
 <h4 id="route">route</h4>
-<pre><code>/api/auth/signup
+<pre><code>/api/user/auth/signup
 </code></pre>
 <h4 id="parameters">parameters</h4>
 <pre><code>{
@@ -147,13 +143,20 @@
 </tr>
 </tbody>
 </table>
-<h4 id="exemple">exemple</h4>
-<pre><code>curl -i -X POST -H &quot;Content-Type: application/json&quot; -d '{ &quot;username&quot;:&quot;foo&quot;,&quot;password&quot;:&quot;bar&quot; }' localhost:3000/api/auth/signup
+<h4 id="example">example</h4>
+<pre><code>curl -X POST \
+  http://localhost:3000/api/user/auth/signup/ \
+  -H 'Content-Type: application/json' \
+  -H 'Host: localhost:3000' \
+  -d '{
+    &quot;username&quot;: &quot;foo&quot;,
+    &quot;password&quot;: &quot;bar&quot;
+  }'
 </code></pre>
 
 <h3 id="log-in">Log In</h3>
 <h4 id="route_1">route</h4>
-<pre><code> /api/auth/login
+<pre><code> /api/user/auth/login
 </code></pre>
 <h4 id="parameters_1">parameters</h4>
 <pre><code> {
@@ -184,9 +187,9 @@
 </tr>
 </tbody>
 </table>
-<h4 id="exemple_1">exemple</h4>
+<h4 id="example_1">example</h4>
 <pre><code>curl -X POST \
-  http://localhost:3000/api/auth/login/ \
+  http://localhost:3000/api/user/auth/login/ \
   -H 'Content-Type: application/json' \
   -H 'Host: localhost:3000' \
   -d '{
