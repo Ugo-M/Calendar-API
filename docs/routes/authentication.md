@@ -5,7 +5,7 @@
 
 
 #### route
-    /api/auth/signup
+    /api/user/auth/signup
     
 #### parameters
 
@@ -24,10 +24,17 @@
 | 400         	| missing arguments                  	|
     
 
-#### exemple
+#### example
 
 ```
-curl -i -X POST -H "Content-Type: application/json" -d '{ "username":"foo","password":"bar" }' localhost:3000/api/auth/signup
+curl -X POST \
+  http://localhost:3000/api/user/auth/signup/ \
+  -H 'Content-Type: application/json' \
+  -H 'Host: localhost:3000' \
+  -d '{
+  	"username": "foo",
+  	"password": "bar"
+  }'
 ``` 
 
  
@@ -35,7 +42,7 @@ curl -i -X POST -H "Content-Type: application/json" -d '{ "username":"foo","pass
  
  
 #### route
-     /api/auth/login
+     /api/user/auth/login
      
 #### parameters
  
@@ -54,11 +61,11 @@ curl -i -X POST -H "Content-Type: application/json" -d '{ "username":"foo","pass
  | 404         	| User not found.                     	|
      
  
-#### exemple
+#### example
  
 ```
 curl -X POST \
-  http://localhost:3000/api/auth/login/ \
+  http://localhost:3000/api/user/auth/login/ \
   -H 'Content-Type: application/json' \
   -H 'Host: localhost:3000' \
   -d '{

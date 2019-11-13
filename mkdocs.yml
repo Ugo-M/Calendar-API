@@ -6,7 +6,6 @@ theme: mkdocs
 nav:
   - Home: index.md
   - Routes:
-      - 'Index': 'routes/index.md'
       - 'Authentication': 'routes/authentication.md'
       - 'Calendar': 'routes/calendar.md'
       - 'Event': 'routes/event.md'
