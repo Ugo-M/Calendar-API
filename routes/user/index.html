@@ -54,10 +54,6 @@
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="../">Index</a>
-</li>
-                                    
-<li >
     <a href="../authentication/">Authentication</a>
 </li>
                                     
@@ -121,29 +117,24 @@
             <li><a href="#header_2">header</a></li>
             <li><a href="#return_2">Return</a></li>
             <li><a href="#example_2">example</a></li>
-        <li class="main "><a href="#get-an-user-from-his-name_1">Get an user from his name</a></li>
+        <li class="main "><a href="#get-an-users-id-from-his-name">Get an user's id from his name</a></li>
             <li><a href="#route_3">route</a></li>
             <li><a href="#header_3">header</a></li>
+            <li><a href="#parameters">parameters</a></li>
             <li><a href="#return_3">Return</a></li>
             <li><a href="#example_3">example</a></li>
-        <li class="main "><a href="#get-an-users-id-from-his-name">Get an user's id from his name</a></li>
+        <li class="main "><a href="#update-an-users-name">update an user's name</a></li>
             <li><a href="#route_4">route</a></li>
             <li><a href="#header_4">header</a></li>
-            <li><a href="#parameters">parameters</a></li>
+            <li><a href="#parameters_1">parameters</a></li>
             <li><a href="#return_4">Return</a></li>
             <li><a href="#example_4">example</a></li>
-        <li class="main "><a href="#update-an-users-name">update an user's name</a></li>
+        <li class="main "><a href="#delete-an-user">delete an user</a></li>
             <li><a href="#route_5">route</a></li>
             <li><a href="#header_5">header</a></li>
-            <li><a href="#parameters_1">parameters</a></li>
+            <li><a href="#parameters_2">parameters</a></li>
             <li><a href="#return_5">Return</a></li>
             <li><a href="#example_5">example</a></li>
-        <li class="main "><a href="#delete-an-user">delete an user</a></li>
-            <li><a href="#route_6">route</a></li>
-            <li><a href="#header_6">header</a></li>
-            <li><a href="#parameters_2">parameters</a></li>
-            <li><a href="#return_6">Return</a></li>
-            <li><a href="#example_6">example</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -242,41 +233,6 @@
 </tbody>
 </table>
 <h4 id="example_2">example</h4>
-<pre><code>curl -X GET http://localhost:3000/api/user/name/foo -H 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9.46h6B23lSofOtpf28wEKPI3DXLyzC__bCxMfbkT-5l0'
-</code></pre>
-
-<h3 id="get-an-user-from-his-name_1">Get an user from his name</h3>
-<h4 id="route_3">route</h4>
-<pre><code> /api/user/name/:name
-</code></pre>
-<h4 id="header_3">header</h4>
-<p>JWT token</p>
-<pre><code>'token: eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9'
-</code></pre>
-<h4 id="return_3">Return</h4>
-<table>
-<thead>
-<tr>
-<th>Status code</th>
-<th>message</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>200</td>
-<td>User</td>
-</tr>
-<tr>
-<td>404</td>
-<td>'User not found'</td>
-</tr>
-<tr>
-<td>400</td>
-<td>error</td>
-</tr>
-</tbody>
-</table>
-<h4 id="example_3">example</h4>
 <pre><code>curl -X GET \
   http://localhost:3000/api/user/name/foo \
   -H 'Content-Type: application/json' \
@@ -285,10 +241,10 @@
 </code></pre>
 
 <h3 id="get-an-users-id-from-his-name">Get an user's id from his name</h3>
-<h4 id="route_4">route</h4>
+<h4 id="route_3">route</h4>
 <pre><code> /api/user/id/
 </code></pre>
-<h4 id="header_4">header</h4>
+<h4 id="header_3">header</h4>
 <p>JWT token</p>
 <pre><code>'token: eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9'
 </code></pre>
@@ -297,7 +253,7 @@
      "username" : "foo"
  }
 </code></pre>
-<h4 id="return_4">Return</h4>
+<h4 id="return_3">Return</h4>
 <table>
 <thead>
 <tr>
@@ -320,7 +276,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="example_4">example</h4>
+<h4 id="example_3">example</h4>
 <pre><code>curl -X GET \ 
   http://localhost:3000/api/user/name/foo \
   -H 'Host: localhost:3000' \
@@ -332,10 +288,10 @@
 </code></pre>
 
 <h3 id="update-an-users-name">update an user's name</h3>
-<h4 id="route_5">route</h4>
+<h4 id="route_4">route</h4>
 <pre><code> /api/user/:id
 </code></pre>
-<h4 id="header_5">header</h4>
+<h4 id="header_4">header</h4>
 <p>JWT token</p>
 <pre><code>'token: eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9'
 </code></pre>
@@ -344,7 +300,7 @@
      "username" : "foo"
  }
 </code></pre>
-<h4 id="return_5">Return</h4>
+<h4 id="return_4">Return</h4>
 <table>
 <thead>
 <tr>
@@ -367,7 +323,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="example_5">example</h4>
+<h4 id="example_4">example</h4>
 <pre><code>curl -X PUT \ 
   http://localhost:3000/api/user/1 \
   -H 'Host: localhost:3000' \
@@ -379,10 +335,10 @@
 </code></pre>
 
 <h3 id="delete-an-user">delete an user</h3>
-<h4 id="route_6">route</h4>
+<h4 id="route_5">route</h4>
 <pre><code> /api/user/
 </code></pre>
-<h4 id="header_6">header</h4>
+<h4 id="header_5">header</h4>
 <p>JWT token</p>
 <pre><code>'token: eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9'
 </code></pre>
@@ -391,7 +347,7 @@
      "username" : "foo"
  }
 </code></pre>
-<h4 id="return_6">Return</h4>
+<h4 id="return_5">Return</h4>
 <table>
 <thead>
 <tr>
@@ -414,7 +370,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="example_6">example</h4>
+<h4 id="example_5">example</h4>
 <pre><code>curl -X DELETE \ 
   http://localhost:3000/api/user/ \
   -H 'Host: localhost:3000' \
