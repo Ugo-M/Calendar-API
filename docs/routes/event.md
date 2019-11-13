@@ -1,5 +1,5 @@
  
-### List all users and their events
+## List all users and their events
  
  
 #### route (GET)
@@ -25,7 +25,7 @@ curl -X GET http://localhost:3000/api/event/ \
   -H 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNTcxMTUxMjIxLCJleHAiOjE1NzEyMzc2MjF9.46h6B23lSofOtpf28wEKPI3DXLyzC__bCxMfbkT-5l0'
 ```
 
-### Get a event from his id
+## Get an event from his id
  
  
 #### route (GET)
@@ -58,7 +58,7 @@ curl -X GET \
 ```
 
 
-### Add a event
+## Add an event
  
  
 #### route (POST)
@@ -100,7 +100,7 @@ curl -X POST \
 ```
 
 
-### update a event's name
+## update an event's name
  
  
 #### route  (PUT)
@@ -141,7 +141,7 @@ curl -X PUT \
 ```
 
 
-### delete a event
+## delete an event
  
  
 #### route  (DELETE)

@@ -1,7 +1,7 @@
 ## Authentication  
 
  
-### Sign up
+## Sign up
 
 
 #### route  (POST)
@@ -38,7 +38,7 @@ curl -X POST \
 ``` 
 
  
-### Log In
+## Log In
  
  
 #### route  (POST)
