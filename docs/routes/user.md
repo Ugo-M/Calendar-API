@@ -2,7 +2,7 @@
 ### List all users and their calendars
  
  
-#### route
+#### route  (GET)
      /api/user/
      
 #### header
@@ -27,7 +27,7 @@ curl -X GET http://localhost:3000/api/user/ -H 'token: eyJhbGciOiJIUzI1NiIsInR5c
 ### Get an user from his id
  
  
-#### route
+#### route  (GET)
      /api/user/id/:id
      
 #### header
@@ -56,7 +56,7 @@ curl -X GET http://localhost:3000/api/user/id/1 -H 'token: eyJhbGciOiJIUzI1NiIsI
 ### Get an user from his name
  
  
-#### route
+#### route  (GET)
      /api/user/name/:name
      
 #### header
@@ -90,7 +90,7 @@ curl -X GET \
 ### Get an user's id from his name
  
  
-#### route
+#### route  (GET)
      /api/user/id/
      
 #### header
@@ -131,7 +131,7 @@ curl -X GET \
 ### update an user's name
  
  
-#### route
+#### route  (PUT)
      /api/user/:id
      
 #### header
@@ -172,7 +172,7 @@ curl -X PUT \
 ### delete an user
  
  
-#### route
+#### route  (DELETE)
      /api/user/
      
 #### header
