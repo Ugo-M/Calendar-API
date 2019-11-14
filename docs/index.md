@@ -9,6 +9,17 @@
 *  Edit the [config/config.json](https://github.com/Ugo-M/Calendar-API/blob/master/config/config.json) file to match your database info.
 * `npm run initdb` - Initialize the database.
 
+
+## Run tests
+
+* `npm test` - Run the test with mocha.
+
+
+## Run the API
+
+* `npm start` - Start the API.
+
+
 ## Project layout
 
     config/         # configuration files
