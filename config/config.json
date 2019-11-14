@@ -1,25 +1,25 @@
 {
   "development": {
-    "username": "ugo-m_m5301",
-    "password": "Abc.123",
-    "database": "ugo-m_projetjs",
-    "host": "postgresql-ugo-m.alwaysdata.net",
+    "username": "userexample",
+    "password": "pwdexample",
+    "database": "dbexample",
+    "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false
   },
   "test": {
-    "username": "ugo-m_m5301",
-    "password": "Abc.123",
-    "database": "ugo-m_projetjs",
-    "host": "postgresql-ugo-m.alwaysdata.net",
+    "username": "userexample",
+    "password": "pwdexample",
+    "database": "dbexample",
+    "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false
   },
   "production": {
-    "username": "ugo-m_m5301",
-    "password": "Abc.123",
-    "database": "ugo-m_projetjs",
-    "host": "postgresql-ugo-m.alwaysdata.net",
+    "username": "userexample",
+    "password": "pwdexample",
+    "database": "dbexample",
+    "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false
   }
