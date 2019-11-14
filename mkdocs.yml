@@ -12,4 +12,3 @@ nav:
       - 'Calendar': 'routes/calendar.md'
       - 'Event': 'routes/event.md'
       - 'User': 'routes/user.md'
-  - About: about.md
