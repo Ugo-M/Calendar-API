@@ -240,6 +240,7 @@ describe("API test",function(){
             });
     });
 
+
     it("should return all the calendars",function(done) {
         server
             .get("/api/calendar")
@@ -317,6 +318,7 @@ describe("API test",function(){
                 done();
             });
     });
+
 
     it("should return all the events",function(done) {
         server
