@@ -1,24 +1,24 @@
 {
   "development": {
-    "username": "userexample",
-    "password": "pwdexample",
-    "database": "dbexample",
+    "username": "foo",
+    "password": "bar",
+    "database": "apidb",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false
   },
   "test": {
-    "username": "userexample",
-    "password": "pwdexample",
-    "database": "dbexample",
+    "username": "foo",
+    "password": "bar",
+    "database": "apidb",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false
   },
   "production": {
-    "username": "userexample",
-    "password": "pwdexample",
-    "database": "dbexample",
+    "username": "foo",
+    "password": "bar",
+    "database": "apidb",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false
